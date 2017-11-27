@@ -1,14 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user) }
+  let(:user) { User.create!(name: "Michael Jordan", email: "mjordan@bloc.io", password: "helloworld") }
+
 
   it { is_expected.to have_many(:lists) }
 
   describe "attributes" do
-    it "should have name, email and password attributes" do
-      expect(user).to have_attributes(name: user.name, email: user.email, password: user.password)
-    end
+
+     it "should respond to name" do
+       expect(user).to respond_to(:name)
+     end
+
+     it "should respond to email" do
+       expect(user).to respond_to(:email)
+     end
 
   end
 

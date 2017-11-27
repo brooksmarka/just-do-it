@@ -1,14 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Api::UsersController, type: :controller do
+  include AuthHelper
 
-  let(:new_user_attributes) do
-    {
-      name: "Michael Jordan",
-      email: "mjordan@bloc.io",
-      password: "helloworld",
+  let(:user) { FactoryGirl.create(:user) }
 
-    }
+  let(:json) { JSON.parse(response.body) }
+
+  describe "GET index" do
+    before do
+      http_login
+    end
+
+    it "returns http success" do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+
+    it "responds with json" do
+      get :index
+      expect(response.content_type).to eq("application/json")
+    end
+
   end
 
    # SAVE for Checkpoint 4
