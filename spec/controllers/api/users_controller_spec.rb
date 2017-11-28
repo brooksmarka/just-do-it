@@ -34,5 +34,17 @@ RSpec.describe Api::UsersController, type: :controller do
 
   end
 
+  describe "DELETE destroy" do
+    before do
+      http_login
+    end
+
+    it "deletes the user" do
+      delete :destroy, params: {id: user.id}
+      expect(response).to have_http_status(204)
+    end
+
+  end
+
 
 end
