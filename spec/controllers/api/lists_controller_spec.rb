@@ -33,4 +33,15 @@ RSpec.describe Api::ListsController, type: :controller do
 
   end
 
+  describe "PUT update" do
+    before do
+      http_login
+    end
+
+    it "updates the list" do
+      put :update, params: {list: {permission: true }, user_id: a_user.id, id: list.id}
+      expect(response).to have_http_status(200)
+    end
+  end
+
 end
