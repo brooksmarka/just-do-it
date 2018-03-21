@@ -22,4 +22,10 @@ RSpec.describe Api::ItemsController, type: :controller do
 
   end
 
+  it "updates the item" do
+    http_login
+    put :update, params: {item: {completed: false }, list_id: list.id, id: item.id }
+    expect(response).to have_http_status(200)
+  end
+
 end
